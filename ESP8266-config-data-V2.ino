@@ -25,7 +25,7 @@ void setup()
     setupStart();
 
     if(setupApp("/appcfg.dat"))
-        if(setupWiFi("/_wificfg.dat"))
+        if(setupWiFi("/wificfg.dat"))
             setupServers("/servercfg.dat");
 
     setupDone();
