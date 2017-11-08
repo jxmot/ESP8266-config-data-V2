@@ -49,7 +49,7 @@ bool bRet = false;
         if(cfgData.size() > MAX_FILE_SIZE) 
         {
             error = -3;
-            errmsg = "Config file size is too large";
+            errmsg = "Configuration file size is too large";
         }
         else
         {
