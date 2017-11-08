@@ -17,6 +17,7 @@
 */
 #include "esp8266-ino.h"
 
+#define TOGGLE_INTERVAL 1000
 /*
     Application Set Up
 */
@@ -37,7 +38,7 @@ void setup()
 void loop() 
 {
     yield();
-    delay(1000);
+    delay(TOGGLE_INTERVAL);
 
     toggleLED();
 }
