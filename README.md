@@ -136,7 +136,13 @@ Let's edit the configuration data and change at least one of the SSID and passwo
 ],"apcount":2}
 ```
 
-**3**) 
+**3**) If you're only going to have one access point in the configuration file, then it should look like this - 
+
+```
+{ "apoints":[
+{"wifi-ssid":"your ssid-1 here","wifi-pass":"your wifi password-1 here"}
+],"apcount":1}
+```
 
 **4**) Save and close the file **AS** **`_wificfg.dat`** (*note the underscore at the beginning of the file name, since this file now contains sensitive information it will be ignored via* `.gitignore` *and cannot be committed*)
 
@@ -218,19 +224,15 @@ Where `usable_SSID_1`, `usable_SSID_2` and `wifipassw1`, `wifipassw2` are the va
 
 When the connection is successful the on-board LED will flash with an interval of `TOGGLE_INTERVAL` (*defined in ESP8266-config-data-V2.ino*).
 
-**NOTE :** If you're only going to have one access point in the configuration file, then it should look like this - 
-
-```
-{ "apoints":[
-{"wifi-ssid":"your ssid-1 here","wifi-pass":"your wifi password-1 here"}
-],"apcount":1}
-```
-
 # Configuration Classes
 
-In this application the configuration data files are read an parsed using two classes. The first is a *base class* that is responsible for reading a specified configuration data file. The second class is derived from the first and is responsible for parsing the
+In this application the configuration data files are read an parsed using two classes. The first is a *base class* that is responsible for reading a specified configuration data file. The second class is derived from the first and is responsible for parsing the JSON data and providing *get* methods for the data.
 
+For example - 
 
+<p align="center">
+  <img src="./mdimg/class_hierarchy.png" alt="Class Hierarchy Example" txt="Class Hierarchy Example"/>
+</p>
 
 
 # Additional Notes
