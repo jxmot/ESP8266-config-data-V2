@@ -49,6 +49,7 @@ void setupStart()
 void setupDone()
 {
     Serial.flush();
+    Serial.println();
     Serial.println("setup DONE - " + (errMsg == "" ? "No Errors" : errMsg));
     Serial.println();
     Serial.flush();
@@ -138,11 +139,17 @@ bool isconnected = false;
         if(w_cfgdat->getError(errMsg)) printError(func, errMsg);
         else {
             printWiFiCfg();
-
-            for(int ix = 0; ix < w_cfgdat->getAPCount() && isconnected == false; ix++)
+            int ix = 0;
+            for(ix = 0; ix < w_cfgdat->getAPCount() && isconnected == false; ix++)
             {
                 isconnected = connectWiFi(w_cfgdat->getSSIDString(ix), w_cfgdat->getPASSString(ix));
             }
+            if(!isconnected) 
+            {
+                errMsg = "Could not connect to - ";
+                for(ix = 0; ix < w_cfgdat->getAPCount(); ix++) errMsg += String("\n    ") + w_cfgdat->getSSIDString(ix);
+                printError(func, errMsg);
+            } else errMsg = "";
         }
     } else printError(func, errMsg);
     return isconnected;
