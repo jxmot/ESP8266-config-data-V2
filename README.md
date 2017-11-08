@@ -5,10 +5,12 @@
 * [Requirements](#requirements)
     * [Flash Memory Tool](#flash-memory-tool)
         * [Installation](#installation)
-    * [Recommended Reading](#recommended-reading)
+    * [ArduinoJSON](#arduinojson)
 * [Running the Application](#running-the-application)
     * [Next Steps](#next-steps)
+* [Configuration Classes](#configuration-classes)
 * [Additional Notes](#additional-notes)
+    * [Recommended Reading](#recommended-reading)
 
 # Overview
 
@@ -18,6 +20,7 @@ This repository contains code intended for the ESP8266. Its purpose is to demons
 
 I had continued some work using my [ESP8266-config-data](#https://github.com/jxmot/ESP8266-config-data) repository as a starting point. And my new design had the following requriements - 
 
+* Configuration data is kept in files and formatted as JSON.
 * Automatically connect to a WiFi access point that -
     * Would be configured in `/data/wificfg.dat`.
     * Has multiple access point choices that would be provided in the configuration file.
@@ -32,6 +35,7 @@ You will need the following -
 * ESP8266 - I'm using a NodeMCU 1.0, and mine is a 12-E
 * Arduino IDE - Installed and made ready for use with the ESP8266
     * In addition to being able to compile code for the ESP8266 you **will** need an IDE plug-in for downloading the file(s) to the ESP8266 *flash memory*.
+* The [ArduinoJSON](#http://arduinojson.org/) library is used in this application. 
     
 ## Flash Memory Tool
 
@@ -50,6 +54,10 @@ There are some discrepancies in the available on-line sources in regards to *whe
 * `C:\Program Files (x86)\Arduino\tools` - copy the contents of the plug-in zip file into this folder.
 
 I've tested the plug-in separately in each of the locations and have had no issues.
+
+## ArduinoJSON
+
+The ArduinoJSON library should be installed via the *library manager* in the Arduino IDE. This application was built and tested with **ArduinoJSON v5.11.0**.
 
 # Running the Application
 
@@ -218,7 +226,9 @@ When the connection is successful the on-board LED will flash with an interval o
 ],"apcount":1}
 ```
 
+# Configuration Classes
 
+In this application the configuration data files are read an parsed using two classes. The first is a *base class* that is responsible for reading a specified configuration data file. The second class is derived from the first and is responsible for parsing the
 
 
 
