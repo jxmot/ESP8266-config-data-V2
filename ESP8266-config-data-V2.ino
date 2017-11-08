@@ -18,6 +18,9 @@
 #include "esp8266-ino.h"
 
 #define TOGGLE_INTERVAL 1000
+#define ERR_TOGGLE_INTERVAL 250
+int toggInterv = TOGGLE_INTERVAL;
+
 /*
     Application Set Up
 */
@@ -26,8 +29,8 @@ void setup()
     setupStart();
 
     if(setupApp("/appcfg.dat"))
-        if(setupWiFi("/wificfg.dat"))
-            setupServers("/servercfg.dat");
+        if(setupWiFi("/wificfg.dat")) setupServers("/servercfg.dat");
+        else toggInterv = ERR_TOGGLE_INTERVAL;
 
     setupDone();
 }
@@ -38,7 +41,7 @@ void setup()
 void loop() 
 {
     yield();
-    delay(TOGGLE_INTERVAL);
+    delay(toggInterv);
 
     toggleLED();
 }
