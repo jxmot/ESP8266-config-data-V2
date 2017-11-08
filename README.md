@@ -144,7 +144,7 @@ Let's edit the configuration data and change at least one of the SSID and passwo
 ],"apcount":1}
 ```
 
-**4**) Save and close the file **AS** **`_wificfg.dat`** (*note the underscore at the beginning of the file name, since this file now contains sensitive information it will be ignored via* `.gitignore` *and cannot be committed*)
+**4**) Save and close the file as **`_wificfg.dat`** (*note the underscore at the beginning of the file name, since this file now contains sensitive information it will be ignored via* `.gitignore` *and cannot be committed*)
 
 **5**) Run the *Arduino IDE* and go to the *Tools* menu and find **`Flash Size:`** and choose **'4M (1M SPIFFS)'**.
 
@@ -233,6 +233,7 @@ For example -
 <p align="center">
   <img src="./mdimg/class_hierarchy.png" alt="Class Hierarchy Example" txt="Class Hierarchy Example"/>
 </p>
+
 
 
 # Additional Notes
