@@ -1,4 +1,4 @@
-# ESP8266-config-data
+# ESP8266-config-data-V2
 
 * [Overview](#overview)
     * [History](#history)
