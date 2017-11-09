@@ -225,11 +225,11 @@ setup DONE - No Errors
 
 Where `usable_SSID_1`, `usable_SSID_2` and `wifipassw1`, `wifipassw2` are the values you edited in the **`/data/_wificfg.dat`** file.
 
-When the connection is successful the on-board LED will flash with an interval of `TOGGLE_INTERVAL` (*defined in ESP8266-config-data-V2.ino*).
+When the connection is successful the on-board LED will flash with an interval of `TOGGLE_INTERVAL` (*defined in ESP8266-config-data-V2.ino*). However if an error has occurred the LED will flash with an interval of `ERR_TOGGLE_INTERVAL`.
 
 # Configuration Classes
 
-In this application the configuration data files are read an parsed using two classes. The first is a *base class* that is responsible for reading a specified configuration data file and initiating the parsing of the JSON data. The second class is derived from the first and is responsible for parsing the JSON data and providing *get* methods for the data.
+In this application the configuration data files are read an parsed using two classes. The first is a *base class* that is responsible for reading a specified configuration data file and initiating the parsing of the JSON data. The second class is derived from the first and is responsible for parsing the JSON data into class member variables and providing *get* methods for the data.
 
 For example - 
 
