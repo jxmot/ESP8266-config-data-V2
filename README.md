@@ -241,7 +241,19 @@ For example -
 
 Here's a walk through on designing a configuration class - 
 
-**1**) 
+**1**) First create some JSON data. In this example we'll keep it simple...
+```
+{
+    "a_string":"just a text string",
+    "an_int":1234,
+    "a_bool":true
+}
+```
+**2**) Use the [ArduinoJSON Assistant](#https://bblanchon.github.io/ArduinoJson/assistant) and paste in your new JSON data. The assistant will analyze your JSON and provide you with some code you can use.
+
+**3**) 
+
+
 
 # Recommended Reading
 
