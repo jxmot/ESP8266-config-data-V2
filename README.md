@@ -251,7 +251,7 @@ Here's a walk through on designing a configuration class -
 ```
 **2**) Use the [ArduinoJSON Assistant](#https://bblanchon.github.io/ArduinoJson/assistant) and paste in your new JSON data. The assistant will analyze your JSON and provide you with some code you can use.
 
-**3**) 
+**3**) Make a copy of AppCfgData.h and AppCfgData.cpp and rename them for your use. We'll use these files as start for the example class.
 
 
 
