@@ -237,21 +237,15 @@ For example -
   <img src="./mdimg/class_hierarchy.png" alt="Class Hierarchy Example" txt="Class Hierarchy Example"/>
 </p>
 
+## Example
 
+Here's a walk through on designing a configuration class - 
 
-# Additional Notes
+**1**) 
 
-* **`configData.cpp`** - A sizable portion of this code came from one or more examples that I found online. I've made some modifications to tailor the code to my needs. However there are a couple of *specific* lines where I left the code "as-is".
-    * `line 38: if (size > 1024)` - This checks the size of the file that has been opened. This check for `(size > 1024)` was left as I found it. I'm not sure if there is any size limits other than not over running the capacity of the chosen SPIFFS (*I'm using 1meg*).
-    * `line 51: StaticJsonBuffer<200> jsonBuffer;` - According to the **ArduinoJson** documentation (<https://bblanchon.github.io/ArduinoJson/>) this line is utilizing memory allocated on the *stack*. An alternative would be to use the *heap*. At this point my preference is *heap*, although I've left the code as I found it.
-    * Adjustments to the values (`1024` and `200`) will likely be needed if a larger JSON file is to be read and parsed. Please review the section [Recommended Reading](#recommended-reading) regarding how to choose appropriate values.
-* Downloading the SPIFFS after the first time isn't necessary unless you have changed the contents of your `config.dat` file, or have added files to the `data` folder.
+# Recommended Reading
 
-I expect to revisit this repository and make changes as I learn more about **SPIFFS** and **ArduinoJson**.
-
-## Recommended Reading
-
-To fully understand **ArduinoJson** and how to properly determine the appropriate size of the `StaticJsonBuffer` I recommend that you read the following - 
+To fully understand **ArduinoJson** and how to properly determine the appropriate size of the buffer needed for your JSON data I recommend that you read the following - 
 
 * **ArduinoJson** documentation, start here - <https://bblanchon.github.io/ArduinoJson/>
 * **ArduinoJson Avoiding Pitfalls**, this provides a very good explanation of common pitfalls as related to the ArduinoJson memory model - <https://bblanchon.github.io/ArduinoJson/doc/pitfalls/>
