@@ -46,7 +46,7 @@ void AppCfgData::parseJSON(std::unique_ptr<char[]>& buf)
         This is one of the places where you would customize this class to be 
         used with your application specific configuration data.
         
-        Another place is in WifiCfgData.h
+        Another place is in AppCfgData.h
     */
     debugmute = json["debugmute"];
     appname = String((const char *)json["appname"]);
