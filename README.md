@@ -8,9 +8,7 @@
     * [ArduinoJSON](#arduinojson)
 * [Running the Application](#running-the-application)
     * [Next Steps](#next-steps)
-* [Configuration Classes](#configuration-classes)
-* [Additional Notes](#additional-notes)
-    * [Recommended Reading](#recommended-reading)
+* [Recommended Reading](#recommended-reading)
 
 # Overview
 
@@ -227,38 +225,11 @@ Where `usable_SSID_1`, `usable_SSID_2` and `wifipassw1`, `wifipassw2` are the va
 
 When the connection is successful the on-board LED will flash with an interval of `TOGGLE_INTERVAL` (*defined in ESP8266-config-data-V2.ino*). However if an error has occurred the LED will flash with an interval of `ERR_TOGGLE_INTERVAL`.
 
-# Configuration Classes
-
-In this application the configuration data files are read an parsed using two classes. The first is a *base class* that is responsible for reading a specified configuration data file and initiating the parsing of the JSON data. The second class is derived from the first and is responsible for parsing the JSON data into class member variables and providing *get* methods for the data.
-
-For example - 
-
-<p align="center">
-  <img src="./mdimg/class_hierarchy.png" alt="Class Hierarchy Example" txt="Class Hierarchy Example"/>
-</p>
-
-## Example
-
-Here's a walk through on designing a configuration class - 
-
-**1**) First create some JSON data. In this example we'll keep it simple...
-```
-{
-    "a_string":"just a text string",
-    "an_int":1234,
-    "a_bool":true
-}
-```
-**2**) Use the [ArduinoJSON Assistant](#https://bblanchon.github.io/ArduinoJson/assistant) and paste in your new JSON data. The assistant will analyze your JSON and provide you with some code you can use.
-
-**3**) Make a copy of AppCfgData.h and AppCfgData.cpp and rename them for your use. We'll use these files as start for the example class.
-
-
-
 # Recommended Reading
 
 To fully understand **ArduinoJson** and how to properly determine the appropriate size of the buffer needed for your JSON data I recommend that you read the following - 
 
+* **ESP8266 SPIFFS - Flash File System** documentation, read this first - <http://esp8266.github.io/Arduino/versions/2.3.0/doc/filesystem.html>
 * **ArduinoJson** documentation, start here - <https://bblanchon.github.io/ArduinoJson/>
 * **ArduinoJson Avoiding Pitfalls**, this provides a very good explanation of common pitfalls as related to the ArduinoJson memory model - <https://bblanchon.github.io/ArduinoJson/doc/pitfalls/>
 * **ArduinoJson Memory Model**, this explains how the memory model is allocated and information regarding buffer sizes and methods of allocation - <https://bblanchon.github.io/ArduinoJson/doc/memory/>
