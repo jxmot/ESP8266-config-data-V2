@@ -6,6 +6,10 @@
 */
 #include <ESP8266WiFi.h>
 
+extern "C" {
+#include "user_interface.h"
+}
+
 #include "connectWiFi.h"
 
 /*
@@ -47,6 +51,7 @@ bool bRet = false;
         info->attempts      = currwifi.attempts;
         info->isConnected   = IsConnected();
         info->rssi          = currwifi.rssi;
+        info->hostname      = currwifi.hostname;
         bRet = true;
     }
     return(bRet);
@@ -79,7 +84,14 @@ char macStr[MACSTR_SIZE];
     while(true) 
     {
         // get ready to connect...
+        currwifi.hostname = String(wifi_station_get_hostname());
+        //Serial.println("wifi_station_get_hostname() = " + String(wifi_station_get_hostname()));
+        // NOTE: WiFi.hostname() did not return anything, that's why it's not used.
+
+        // set for "station"
         WiFi.mode(WIFI_STA);
+
+        // go for it...
         WiFi.begin(ssid, passw);
 
         // only wait for the connection to occur for MAX_WAITCONNECTED
@@ -95,10 +107,7 @@ char macStr[MACSTR_SIZE];
                 currwifi.ipAddrString  = WiFi.localIP().toString();
                 currwifi.timeToConnect = x;
                 WiFi.macAddress(currwifi.mac);
-                sprintf(macStr, "%02X:%02X:%02X:%02X:%02X:%02X", 
-                        currwifi.mac[0], currwifi.mac[1], currwifi.mac[2], 
-                        currwifi.mac[3], currwifi.mac[4], currwifi.mac[5]);
-                currwifi.macAddrString = String(macStr);
+                currwifi.macAddrString = WiFi.macAddress();
                 currwifi.isConnected   = true;
                 currwifi.rssi          = WiFi.RSSI();
                 return(true);
@@ -110,10 +119,7 @@ char macStr[MACSTR_SIZE];
         {
             currwifi.attempts += 1;
             delay(ATTEMPT_DELAY);
-        } else {
-            // failed to connect
-            return(false);
-        }
+        } else return(false); // failed to connect
     }
 }
 

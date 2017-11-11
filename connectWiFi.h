@@ -33,6 +33,7 @@ typedef struct {
     int     attempts;               // number of attempts
     bool    isConnected;            // = true, connected
     int     rssi;                   // received signal strength
+    String  hostname;               // device hostname
 } conninfo;
 
 class ConnectWiFi {
