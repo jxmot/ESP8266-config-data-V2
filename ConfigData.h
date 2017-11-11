@@ -16,8 +16,11 @@ class ConfigData {
     
     public:
         ConfigData(const char *cfgfile);
+        ~ConfigData();
 
+        bool openCfg(const char *cfgfile);
         bool parseFile();
+
         int getError(String &s);
 
     private:

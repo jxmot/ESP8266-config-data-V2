@@ -10,28 +10,53 @@
 
 #include "ConfigData.h"
 
+//////////////////////////////////////////////////////////////////////////////
 // Sources of information that I found useful when creating this code -
 // 
-// http://esp8266.github.io/Arduino/versions/2.0.0/doc/filesystem.html
+// http://esp8266.github.io/Arduino/versions/2.3.0/doc/filesystem.html
+//
 // https://github.com/esp8266/arduino-esp8266fs-plugin
 //
 // http://www.instructables.com/id/Using-ESP8266-SPIFFS/
+//
 //////////////////////////////////////////////////////////////////////////////
 /*
     
 */
 ConfigData::ConfigData(const char *cfgfile) : cfgData(NULL), error(0), errmsg("")
 {
-    SPIFFS.begin();
-    cfgData = SPIFFS.open(cfgfile, "r");
+    openCfg(cfgfile);
+}
 
-    // check to see if the file opened...
-    if (!cfgData) 
+ConfigData::~ConfigData()
+{
+    if(cfgData != NULL) cfgData.close();
+    SPIFFS.end();
+}
+
+bool ConfigData::openCfg(const char *cfgfile)
+{
+bool bRet = false;
+
+    // important info - 
+    //      https://github.com/esp8266/Arduino/blob/master/doc/filesystem.rst
+    SPIFFS.begin();
+
+    // if there's the possibility that a file has already been
+    // opened then close it now.
+    if(cfgData != NULL) cfgData.close();
+
+    // open the file and check for success...
+    if(cfgData = SPIFFS.open(cfgfile, "r")) bRet = true;
+    else 
     {
+        cfgData = File(NULL);
+
         // it didn't open, note the likely error.
         error = -1;
         errmsg = "The configuration data file [" + String(cfgfile) + "] doesn't exist.";
     }
+    return bRet;
 }
 
 bool ConfigData::parseFile()
@@ -46,8 +71,12 @@ bool bRet = false;
     }
     else
     {
+        // it's best to keep the size of the JSON configuration
+        // files reasonably small. 
         if(cfgData.size() > MAX_FILE_SIZE) 
         {
+            cfgData.close();
+
             error = -3;
             errmsg = "Configuration file size is too large";
         }
