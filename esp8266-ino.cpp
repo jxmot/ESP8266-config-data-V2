@@ -252,8 +252,8 @@ conninfo conn;
 
         if(connWiFi->GetConnInfo(&conn)) 
         {
-            Serial.println("ip  : " + conn.ipAddrString);
-            Serial.println("mac : " + conn.macAddrString);
+            Serial.println("ip  : " + conn.localIP);
+            Serial.println("mac : " + conn.macAddress);
             Serial.println("host: " + conn.hostname);
             Serial.println("Connection Attempt Stats : ");
             Serial.println("attempts = " + String(conn.attempts));

@@ -24,16 +24,16 @@
 
 // Current successful connection information.
 typedef struct {
-    String  ssidString;             // SSID used
-    String  passString;             // password used
-    String  ipAddrString;           // IP Address
-    String  macAddrString;          // MAC Address
-    uint8_t mac[MAC_SIZE];          // MAC Address (raw)
-    int     timeToConnect;          // time in seconds
-    int     attempts;               // number of attempts
-    bool    isConnected;            // = true, connected
-    int     rssi;                   // received signal strength
-    String  hostname;               // device hostname
+    String  ssid;           // SSID used
+    String  passw;          // password used
+    String  localIP;        // IP Address obtained
+    String  macAddress;     // MAC Address
+    uint8_t mac[MAC_SIZE];  // MAC Address (raw)
+    int     timeToConnect;  // time in seconds
+    int     attempts;       // number of attempts
+    bool    isConnected;    // = true, connected
+    int     rssi;           // received signal strength
+    String  hostname;       // device hostname
 } conninfo;
 
 class ConnectWiFi {

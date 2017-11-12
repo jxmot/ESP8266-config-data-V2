@@ -42,16 +42,18 @@ bool bRet = false;
     {
         // copy the connection info to the caller's
         // provided memory
-        info->ssidString    = currwifi.ssidString;
-        info->passString    = currwifi.passString;
-        info->ipAddrString  = currwifi.ipAddrString;
-        info->macAddrString = currwifi.macAddrString;
+        info->ssid       = currwifi.ssid;
+        info->passw      = currwifi.passw;
+        info->localIP    = currwifi.localIP;
+        info->macAddress = currwifi.macAddress;
         for(int ix = 0; ix < MAC_SIZE; ix++) info->mac[ix] = currwifi.mac[ix];
+
         info->timeToConnect = currwifi.timeToConnect;
         info->attempts      = currwifi.attempts;
         info->isConnected   = IsConnected();
         info->rssi          = currwifi.rssi;
         info->hostname      = currwifi.hostname;
+
         bRet = true;
     }
     return(bRet);
@@ -104,12 +106,12 @@ char macStr[MACSTR_SIZE];
             {
                 // connected, gather connection info and return
                 // success (true)
-                currwifi.ipAddrString  = WiFi.localIP().toString();
+                currwifi.localIP = WiFi.localIP().toString();
                 currwifi.timeToConnect = x;
                 WiFi.macAddress(currwifi.mac);
-                currwifi.macAddrString = WiFi.macAddress();
-                currwifi.isConnected   = true;
-                currwifi.rssi          = WiFi.RSSI();
+                currwifi.macAddress = WiFi.macAddress();
+                currwifi.isConnected = true;
+                currwifi.rssi = WiFi.RSSI();
                 return(true);
             }
         }
@@ -128,11 +130,12 @@ char macStr[MACSTR_SIZE];
 */
 void ConnectWiFi::initCurrWiFi(const char *ssid, const char *passw) 
 {
-    currwifi.ssidString    = String(ssid);
-    currwifi.passString    = String(passw);
-    currwifi.ipAddrString  = "";
-    currwifi.macAddrString = "";
+    currwifi.ssid       = String(ssid);
+    currwifi.passw      = String(passw);
+    currwifi.localIP    = "";
+    currwifi.macAddress = "";
     for(int ix = 0; ix < MAC_SIZE; ix++) currwifi.mac[ix] = 0;
+
     currwifi.timeToConnect = 0;
     currwifi.attempts      = 1;
     currwifi.isConnected   = false;
