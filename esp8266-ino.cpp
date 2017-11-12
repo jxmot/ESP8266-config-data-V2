@@ -209,7 +209,9 @@ void printSrvCfg()
 srvcfg cfg;
 // NOTE: These strings are used in the configuration file
 // to separate the various servers that the application 
-// might use. 
+// might use. Retrieving the information using a string
+// eliminates the need to keep indices in sync between the
+// application and the config data.
 const String labels[] = {"http","devapi","websock","END"};
 
     if((a_cfgdat != NULL) && !a_cfgdat->getDebugMute())
@@ -218,9 +220,9 @@ const String labels[] = {"http","devapi","websock","END"};
         {
             if(s_cfgdat->getServerCfg(labels[ix], cfg))
             {
-                Serial.println("srvLabel = " + cfg.srvLabel);
-                Serial.println("srvAddr  = " + cfg.srvAddr);
-                Serial.println("srvPort  = " + String(cfg.srvPort));
+                Serial.println("label = " + cfg.label);
+                Serial.println("addr  = " + cfg.addr);
+                Serial.println("port  = " + String(cfg.port));
                 Serial.println();
             } else Serial.println("not found in cfg - " + labels[ix]);
         }
@@ -252,8 +254,8 @@ conninfo conn;
 
         if(connWiFi->GetConnInfo(&conn)) 
         {
-            Serial.println("ip  : " + conn.ipAddrString);
-            Serial.println("mac : " + conn.macAddrString);
+            Serial.println("ip  : " + conn.localIP);
+            Serial.println("mac : " + conn.macAddress);
             Serial.println("host: " + conn.hostname);
             Serial.println("Connection Attempt Stats : ");
             Serial.println("attempts = " + String(conn.attempts));

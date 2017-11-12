@@ -16,9 +16,9 @@
 // the description of a server
 class srvcfg {
     public:
-        String srvLabel;
-        String srvAddr;
-        int srvPort;
+        String label;
+        String addr;
+        int port;
 };
 
 // to limit memory use only 4 servers can be configured

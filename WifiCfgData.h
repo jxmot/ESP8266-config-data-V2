@@ -19,8 +19,8 @@
 // An access point - 
 class apoint {
     public:
-        String wifissid;
-        String wifipass;
+        String ssid;
+        String pass;
 };
 
 class WifiCfgData : public ConfigData {
