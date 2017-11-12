@@ -8,6 +8,7 @@
     * [ArduinoJSON](#arduinojson)
 * [Running the Application](#running-the-application)
     * [Next Steps](#next-steps)
+    * [Muting the Output](#muting-the-output)
 * [Recommended Reading](#recommended-reading)
 
 # Overview
@@ -86,8 +87,8 @@ getDebugMute - OFF
 
 WifiCfgData parsing JSON - 
 { "apoints":[
-{"wifi-ssid":"your ssid-1 here","wifi-pass":"your wifi password-1 here"},
-{"wifi-ssid":"your ssid-2 here","wifi-pass":"your wifi password-2 here"}
+{"ssid":"your ssid-1 here","pass":"your wifi password-1 here"},
+{"ssid":"your ssid-2 here","pass":"your wifi password-2 here"}
 ],"apcount":2}
 
 getAPCount - 2
@@ -182,21 +183,17 @@ getSSID - usable_SSID_2
 getPASS - wifipassw2
 
 Attempting connection to - 
-ssid : usable_SSID_1
-pass : wifipassw1
-connected? - no
-
-Attempting connection to - 
 ssid : usable_SSID_2
 pass : wifipassw2
 connected? - yes
 
-ip : 192.168.0.2
-mac: 60:01:00:00:00:02
+ip  : 192.168.0.14
+mac : 60:01:00:00:00:02
+host: ESP_000002
 Connection Attempt Stats : 
 attempts = 1
-time     = 4
-rssi     = -45 dBm
+time     = 3
+rssi     = -37 dBm
 
 SrvCfgData parsing JSON - 
 {
@@ -205,17 +202,17 @@ SrvCfgData parsing JSON -
     "websock":{"addr":"192.168.0.26","port":8080}
 }
 
-srvLabel = http
-srvAddr  = 192.168.0.26
-srvPort  = 80
+label = http
+addr  = 192.168.0.26
+port  = 80
 
-srvLabel = devapi
-srvAddr  = 192.168.0.26
-srvPort  = 4843
+label = devapi
+addr  = 192.168.0.26
+port  = 4843
 
-srvLabel = websock
-srvAddr  = 192.168.0.26
-srvPort  = 8080
+label = websock
+addr  = 192.168.0.26
+port  = 8080
 
 
 setup DONE - No Errors
@@ -224,6 +221,10 @@ setup DONE - No Errors
 Where `usable_SSID_1`, `usable_SSID_2` and `wifipassw1`, `wifipassw2` are the values you edited in the **`/data/_wificfg.dat`** file.
 
 When the connection is successful the on-board LED will flash with an interval of `TOGGLE_INTERVAL` (*defined in ESP8266-config-data-V2.ino*). However if an error has occurred the LED will flash with an interval of `ERR_TOGGLE_INTERVAL`.
+
+## Muting the Output
+
+In `appcfg.dat` change `debugmute` to `true` and upload sketch data. Reset and the majority of debug output will be muted. 
 
 # Recommended Reading
 
