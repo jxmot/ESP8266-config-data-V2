@@ -54,9 +54,9 @@ void SrvCfgData::parseJSON(std::unique_ptr<char[]>& buf)
     for(int ix = 0; labels[ix] != "END"; ix++)
     {
         configs[ix] = new srvcfg();
-        configs[ix]->srvLabel = labels[ix];
-        configs[ix]->srvAddr  = String((const char *)json[(char *)labels[ix].c_str()]["addr"]);
-        configs[ix]->srvPort  = json[(char *)labels[ix].c_str()]["port"];
+        configs[ix]->label = labels[ix];
+        configs[ix]->addr  = String((const char *)json[(char *)labels[ix].c_str()]["addr"]);
+        configs[ix]->port  = json[(char *)labels[ix].c_str()]["port"];
     }
 }
 
@@ -73,11 +73,11 @@ bool bRet = false;
 
     for(int ix = 0; (ix < MAX_SRVCFG) && !bRet; ix++)
     {
-        if(configs[ix]->srvLabel == label)
+        if(configs[ix]->label == label)
         {
-            cfgout.srvLabel = configs[ix]->srvLabel;
-            cfgout.srvAddr  = configs[ix]->srvAddr;
-            cfgout.srvPort  = configs[ix]->srvPort;
+            cfgout.label = configs[ix]->label;
+            cfgout.addr  = configs[ix]->addr;
+            cfgout.port  = configs[ix]->port;
             bRet = true;
         }
     }
