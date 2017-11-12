@@ -224,7 +224,7 @@ When the connection is successful the on-board LED will flash with an interval o
 
 ## Muting the Output
 
-In `appcfg.dat` change `debugmute` to `true` and upload sketch data. Reset and the majority of debug output will be muted. 
+In `appcfg.dat` change `debugmute` to `true` and upload the sketch data. Reset and the majority of debug output will be muted. 
 
 # Recommended Reading
 
