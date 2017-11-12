@@ -6,10 +6,6 @@
 */
 #include <ESP8266WiFi.h>
 
-extern "C" {
-#include "user_interface.h"
-}
-
 #include "connectWiFi.h"
 
 /*
@@ -81,15 +77,13 @@ char macStr[MACSTR_SIZE];
     // clear out the MAC
     for(int ix = 0; ix < MACSTR_SIZE; ix++) macStr[ix] = 0;
 
+    // get the current hostname
+    currwifi.hostname = String(WiFi.hostname());
+
     // Keep trying to connect until either we're successful or
     // we've run out of attempts
     while(true) 
     {
-        // get ready to connect...
-        currwifi.hostname = String(wifi_station_get_hostname());
-        //Serial.println("wifi_station_get_hostname() = " + String(wifi_station_get_hostname()));
-        // NOTE: WiFi.hostname() did not return anything, that's why it's not used.
-
         // set for "station"
         WiFi.mode(WIFI_STA);
 
