@@ -7,6 +7,10 @@
 #include "SrvCfgData.h"
 #include "connectWiFi.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // if the application configuration is present, and if the debug mute flag is 
 // true then mute debug output
 #define DEBUG_MUTE ((a_cfgdat != NULL) && a_cfgdat->getDebugMute() ? true : false)
@@ -30,7 +34,8 @@ String errMsg;
 
 // pointer to the WiFi connection object
 ConnectWiFi *connWiFi = NULL;
-//////////////////////////////////////////////////////////////////////////////
+
+/* ************************************************************************ */
 /*
     Print a start up message to the serial port
 */
@@ -56,19 +61,24 @@ void setupDone()
 
     // let's blink the LED from within loop()
     pinMode(LED_BUILTIN, OUTPUT);
+    delay(10);
+    digitalWrite(LED_BUILTIN, HIGH);
 }
 
 /*
     Toggle the on-board LED
 */
-void toggleLED()
+bool toggleLED()
 {
 static bool ledTogg = false;
+//static bool ledTogg = true;
+
+    ledTogg = !ledTogg;
 
     if(ledTogg) digitalWrite(LED_BUILTIN, LOW);
     else digitalWrite(LED_BUILTIN, HIGH);
 
-    ledTogg = !ledTogg;
+    return ledTogg;
 }
 
 /*
@@ -100,7 +110,8 @@ bool bRet = false;
         a_cfgdat->parseFile();
 
         if(a_cfgdat->getError(errMsg)) printError(func, errMsg);
-        else {
+        else 
+        {
             printAppCfg();
             bRet = true;
         }
@@ -137,7 +148,8 @@ bool isconnected = false;
     {
         w_cfgdat->parseFile();
         if(w_cfgdat->getError(errMsg)) printError(func, errMsg);
-        else {
+        else 
+        {
             printWiFiCfg();
             int ix = 0;
             for(ix = 0; ix < w_cfgdat->getAPCount() && isconnected == false; ix++)
@@ -193,7 +205,8 @@ bool bRet = false;
     {
         s_cfgdat->parseFile();
         if(s_cfgdat->getError(errMsg)) printError(func, errMsg);
-        else {
+        else 
+        {
             printSrvCfg();
             bRet = true;
         }
@@ -265,3 +278,20 @@ conninfo conn;
     }
     return connWiFi->IsConnected();
 }
+
+/*
+    return the debug mute flag, true = muted
+
+    If the application configuration doesn't exist this function
+    will return true (muted)
+*/
+bool checkDebugMute()
+{
+    if(a_cfgdat != NULL) return a_cfgdat->getDebugMute();
+    return true;
+}
+
+#ifdef __cplusplus
+}
+#endif
+
