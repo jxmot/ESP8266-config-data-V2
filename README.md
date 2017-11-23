@@ -51,7 +51,7 @@ There are some discrepancies in the available on-line sources in regards to *whe
 
 * `C:\Users\SOME_USER\Documents\Arduino` - you might have to create a `tools` folder here, and then copy the contents of the plugin zip file into it.
 
-**OR**
+**---> OR**
 
 * `C:\Program Files (x86)\Arduino\tools` - copy the contents of the plug-in zip file into this folder.
 
@@ -65,13 +65,13 @@ The ArduinoJSON library should be installed via the *library manager* in the Ard
 
 Start with an unmodified version of the code from this repository. Please use the following steps - 
 
-**1**) Run the *Arduino IDE* and go to the *Tools* menu and find **`Flash Size:`** and choose **'4M (1M SPIFFS)'**.
+**1**) Run the *Arduino IDE* and open the **ino** file and build & upload it to the ESP8266. **Do not** open the serial monitor.
 
-**2**) Open the **ino** file in the *Arduino IDE* and build & upload it to the ESP8266. **Do not** open the serial monitor.
+**2**) Go to the *Tools* menu and find **`Flash Size:`** and choose **'4M (1M SPIFFS)'**.
 
 **3**) Then go to the *Tools* menu and click on **`ESP8266 Sketch Data Upload`**.
 
-Your SPIFFS along with the file it contains will be uploaded to the ESP8266. After that has completed open the *serial monitor* and reset the ESP8266. 
+Your SPIFFS along with the files it contains will be uploaded to the ESP8266. After that has completed open the *serial monitor* and reset the ESP8266. 
 
 You should see this in the serial monitor - 
 
